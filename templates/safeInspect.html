@@ -1,0 +1,605 @@
+<div class="main-container">
+    <div class="padding-md">
+        <div class="header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 class="header-text m-bottom-sm">安全检验合格证</h3>
+            <div class="panel-body table-responsive">
+                <calendar></calendar>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>公司名</th>
+                        <th>申报人</th>
+                        <th>设备编号</th>
+                        <th>设备名称</th>
+                        <th>报检编号</th>
+                        <th>工程名</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="Data in safeData">
+                        <td ng-bind="Data.applicationCompanyName" class="ng-binding"></td>
+                        <td ng-bind="Data.declarant" class="ng-binding"></td>
+                        <td ng-bind="Data.deviceCode" class="ng-binding"></td>
+                        <td ng-bind="Data.deviceName" class="ng-binding"></td>
+                        <td ng-bind="Data.iprCode" class="ng-binding"></td>
+                        <td ng-bind="Data.projectName" class="ng-binding"></td>
+                        <td ng-bind="Data.createTime | date:'yyyy-MM-dd HH:mm'" class="ng-binding"></td>
+                        <td>
+                            <span class="fa fa-print fa-lg btn btn-primary marginTB-xs" title="打印"
+                                  ng-click="onSafeInspectClick($index)" data-toggle="modal"
+                                  data-target="#myModa02"></span>
+                            <span class="fa fa-file-text-o fa-lg btn  btn-success marginTB-xs" title="详情"
+                                  report-details="showDetailModal" data-toggle="modal" data-target="#myModa94"
+                                  ng-click="Particulars($index)"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pull-right">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                    <li class="disabled"><a href="#">‹</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li class="disabled"><a href="#">›</a></li>
+                    <li class="disabled"><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+            <!-- Modal -->
+            <!--安全合格证模态框-->
+            <div class="modal fade" id="myModa02" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="smart-widget ng-scope">
+                        <div class="smart-widget-header">
+                            安全检验合格证打印
+                            <span class="smart-widget-option" ng-click="disMissModal()">
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span
+                                         aria-hidden="true">&times;
+                                 </span>
+                             </button>
+                        </span>
+                        </div>
+                        <div class="smart-widget-inner safeInspect">
+                            <div class="smart-widget-body">
+                                <form id="formToggleLine"
+                                      class="form-horizontal no-margin form-border ng-pristine ng-valid">
+                                    <!--startprint-->
+                                    <div class="passed" style="width: 100%;height: 400px;background-color: #848484">
+                                        <div style="width: 95%;height: 70px;margin-left:15px;background-color:forestgreen;">
+                                            <div style="font-size: 3.3em;color: white;text-align: center;letter-spacing:10px;line-height:70px;">
+                                                安 全 检 验 合 格
+                                            </div>
+                                            <div style="font-size:19px;color:white;line-height:40px;letter-spacing:10px;text-align: center;">
+                                                PASSED SAEETY TEST
+                                            </div>
+                                            <div class="row"
+                                                 style="background-color: #fef98c;height:230px;width:100%;margin: auto 0;">
+                                                <div class="col-md-6"
+                                                     style="padding-top: 30px;font-size: 18px;color: #0b1014;">
+                                                    <p style="font-weight:900;">报告编号
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDatadeviceCode}}</span>
+                                                    </p>
+                                                    <p style="font-weight:900;">工程名称
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDataprojectName}}</span>
+                                                    </p>
+                                                    <p style="font-weight:900;">使用单位
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDataprojectName}}</span>
+                                                    </p>
+                                                    <p style="font-weight:900;">生产厂家
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDataapplicationCompanyName}}</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6"
+                                                     style="padding-top: 30px;font-size: 18px;color: #0b1014;padding-left:80px;">
+                                                    <p style="font-weight:900;">设备品种
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDatadeviceName}}</span>
+                                                    </p>
+                                                    <p style="font-weight:900;">设备型号
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDataiprCode}}</span>
+                                                    </p>
+                                                    <p style="font-weight:900;">产品编号
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDatadeviceCode}}</span>
+                                                    </p>
+                                                    <p style="font-weight:900;">检验日期
+                                                        <span style="font-size:17px;font-weight:500;">{{safeDatacreateTime | date:'yyyy-MM-dd'}}</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div style="width:100%;height: 60px;background-color:forestgreen;color:white;font-size:23px;padding-left:30px;">
+                                                合 肥 市 建 筑 协 会 安 全 设 备 分 会
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--endprint-->
+                                </form>
+                                <div class="smart-widget ng-scope row" style="margin-top : 15px;padding: 8px 0;">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-success btn-lg btn-block" ng-click="btnPrintClick()">
+                                            确认打印
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-success btn-lg  btn-block" ng-click="print()">
+                                            取消
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModa94" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="smart-widget ng-scope">
+                        <div class="smart-widget-header">
+                            报告详情
+                            <span class="smart-widget-option">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span
+                                aria-hidden="true">&times;
+                        </span>
+                    </button>
+                </span>
+                        </div>
+                        <div class="smart-widget-inner">
+                            <div class="smart-widget-body">
+                                <form class="form-horizontal no-margin form-border ng-pristine ng-valid">
+                                    <div active="activeForm">
+                                        <form name="outerForm" class="tab-form-demo">
+                                            <uib-tabset active="activeForm">
+                                                <uib-tab index="0" heading="设备报检申请">
+                                                    <ng-form name="nestedForm">
+                                                        <div class="form-group smart-widget-body">
+                                                            <div class="form-group ng-scope" style="margin-top:20px;">
+                                                                <label class="col-lg-3 control-label">产权备案编号</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.iprCode"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">设备编号</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.deviceCode"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">设备名称</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.deviceName"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">规格型号</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.specification"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">所属工程</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.project.name"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">设备公司名</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.applicationCompany.name"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">申报人</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.declarant"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">申报时间</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.application.applicationDate | date:'yyyy-MM-dd'"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-form>
+                                                </uib-tab>
+                                                <uib-tab index="1" heading="检验单位审核">
+                                                    <ng-form name="nestedForm">
+                                                        <div class="form-group smart-widget-body">
+                                                            <div class="form-group ng-scope" style="margin-top:20px;">
+                                                                <label class="col-lg-3 control-label">申报人</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.accept.accepter.username"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">审核时间</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.accept.createTime | date:'yyyy-MM-dd'"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope"></div>
+                                                        </div>
+                                                    </ng-form>
+                                                </uib-tab>
+                                                <uib-tab index="2" heading="现场检验详情">
+                                                    <ng-form name="nestedForm">
+                                                        <div class="form-group smart-widget-body">
+                                                            <div class="form-group ng-scope" style="margin-top:20px;">
+                                                                <label class="col-lg-3 control-label">检验人员</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.execution.inspector.username"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">签到时间</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind=""></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">签到地点</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind=""></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">签退时间</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind=""></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">签退地点</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind=""></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope">
+                                                                <label class="col-lg-3 control-label">审核时间</label>
+                                                                <div class="col-lg-9">
+                                                        <span class="form-control ng-binding"
+                                                              ng-bind="culars.execution.createTime| date:'yyyy-MM-dd'"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope"></div>
+                                                        </div>
+                                                    </ng-form>
+                                                </uib-tab>
+                                                <uib-tab index="3" heading="检验报告详情">
+                                                    <ng-form name="nestedForm">
+                                                        <div class="form-group smart-widget-body">
+                                                            <div style="margin-top:20px;">
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">设备检验报告编号</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.code"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">设备安装地点</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.deviceInstallAddress"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">出厂编号</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.factoryNumber"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">安装许可证编号</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.installLicenseCode"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">生产厂家</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.factory"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">制造许可证编号</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.manufacturingLicenseNumber"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">出厂日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.factoryDate | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">使用年限</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.serviceLife"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">安装高度</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.mountingHeight"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">最大额定起重量</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.maxSpecifiedWeight"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">最大起重力矩</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.maxLoadMoment"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">起升速度</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.liftingSpeed"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">最大幅度</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.maxRadius"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">安装幅度</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.installRadius"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">变幅速度</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.derrickingSpeed"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">大车运行速度</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.gantryTravelingSpeed"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">附着道数</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.attachChannelCount"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">检验依据</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.inspectionStandard"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">主要检验仪器</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.mainInspectionInstrument"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">检验结论</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.inspectionConclusion"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">备注</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.remark"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">下次检验日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.nextInspectionDate | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">审核人员</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.auditOfficer"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">审核日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.auditDate | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">批准人员</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.authorizingOfficer"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">批准日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.authorizingDate | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">检验机构核准证号</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.inspectionUnitCertificate"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">签发日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.conclusion.issueDate | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group ng-scope"></div>
+                                                        </div>
+                                                    </ng-form>
+                                                </uib-tab>
+                                                <uib-tab index="4" heading="复检报告详情">
+                                                    <ng-form name="nestedForm">
+                                                        <div class="form-group smart-widget-body">
+                                                            <div class="form-group ng-scope" style="margin-top:20px;">
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">复检报告编号</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.code"></span>
+                                                                    </div>
+                                                                    <label class="control-label">复检日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.recheckDate | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                    <label class="control-label">签发日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.issueDate | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                    <label class="control-label">首次检验不合格内容</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.firstInspectionDisqualifiedReason"></span>
+                                                                    </div>
+                                                                    <label class="control-label">维护日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.maintenanceDate  | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">使用单位</label>
+                                                                    <div>
+                                                                        <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.usingUnit">
+                                                                        </span>
+                                                                    </div>
+                                                                    <label class="control-label">复检结论</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.recheckConclusion"></span>
+                                                                    </div>
+                                                                    <label class="control-label">下次签发日期</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.nextIssueDate  | date:'yyyy-MM-dd'"></span>
+                                                                    </div>
+                                                                    <label class="control-label">复检结果</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.recheckResult"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">设备安装地点</label>
+                                                                    <div>
+                                                                        <span class="form-control ng-binding"
+                                                                              ng-bind="culars.recheckConclusion.installAddress">
+
+                                                                        </span>
+                                                                    </div>
+                                                                    <label class="control-label">检验机构核准证号</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.inspectionUnitCertificateCode"></span>
+                                                                    </div>
+                                                                    <label class="control-label">备注</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.remark"></span>
+                                                                    </div>
+                                                                    <label class="control-label">维护人员</label>
+                                                                    <div>
+                                                            <span class="form-control ng-binding"
+                                                                  ng-bind="culars.recheckConclusion.maintenanceStaff"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group ng-scope"></div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-form>
+                                                </uib-tab>
+                                            </uib-tabset>
+                                        </form>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

@@ -1,0 +1,343 @@
+<div class="main-container inspect">
+    <div class="header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="header-text m-bottom-sm">检验单位审核</h3>
+        <div class="panel-body table-responsive">
+            <calendar></calendar>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td>检验受理编号</td>
+                    <td>检验项目名称</td>
+                    <td>检验设备名称</td>
+                    <td>检验设备编号</td>
+                    <td>项目公司名称</td>
+                    <td>申报人员</td>
+                    <td>创建日期</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in inspectUnitSH" class="ng-scope">
+                    <td ng-bind="data.id" class="ng-binding"></td>
+                    <td ng-bind="data.projectName" class="ng-binding"></td>
+                    <td ng-bind="data.deviceName" class="ng-binding"></td>
+                    <td ng-bind="data.deviceCode" class="ng-binding"></td>
+                    <td ng-bind="data.applicationCompanyName" class="ng-binding"></td>
+                    <td ng-bind="data.declarant" class="ng-binding"></td>
+                    <td ng-bind="data.createTime | date:'yyyy-MM-dd HH:mm'" class="ng-binding"></td>
+                    <td>
+                    <span class="fa fa-pencil-square-o fa-lg btn btn-primary marginTB-xs" title="编辑"
+                          ng-click="editClick($index)" data-toggle="modal" data-target="#myModa9"></span>
+                        <span class="fa fa-check-square-o fa-lg btn btn-primary marginTB-xs ng-scope"
+                              title="受理"    ng-click="AcceptedInformation($index)"
+                              data-toggle="modal" data-target="#myModa10"></span>
+                        <span class="fa fa-file-text-o fa-lg btn  btn-success marginTB-xs" title="详情"
+                              report-details="showDetailModal" ng-click="details($index)" data-toggle="modal" data-target="#myModa11"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pull-right">
+            <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="disabled"><a href="#">‹</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li class="disabled"><a href="#">›</a></li>
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+        <!-- 编辑设备报检信息Modal -->
+        <div class="modal fade" id="myModa9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="smart-widget ng-scope">
+                    <div class="smart-widget-header">
+                        修改设备报检信息
+                        <span class="smart-widget-option">
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span
+                                         aria-hidden="true">&times;
+                                 </span>
+                             </button>
+                        </span>
+                    </div>
+                    <div class="smart-widget-inner">
+                        <div class="smart-widget-body">
+                            <form
+                                  class="form-horizontal no-margin form-border ng-pristine ng-valid">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">产权备案编号</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入产权备案编号" ng-model="inspectEditInfor.iprCode"
+                                               id="iprCode">
+                                    </div>
+                                </div>
+                                <!-- 设备编号 -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">设备编号</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入设备编号" ng-model="inspectEditInfor.deviceCode">
+                                    </div>
+                                </div>
+                                <!-- 设备名称 -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">设备名称</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入设备名称" ng-model="inspectEditInfor.deviceName"
+                                               id="deviceName">
+                                    </div>
+                                </div>
+                                <!-- 规格型号 -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">规格型号</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" ng-model="inspectEditInfor.specification">
+                                    </div>
+                                </div>
+                                <!--所属工程-->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">所属工程</label>
+                                    <div class="col-lg-10">
+                                        <select class="form-control" ng-model="inspectEditInfor.project.id"
+                                                ng-options="value.id as value.name for value in inspectUnitSH2"></select>
+                                    </div>
+                                </div>
+                                <!--设备公司名-->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">设备公司名</label>
+                                    <div class="col-lg-10">
+                                        <select class="form-control" ng-model="inspectEditInfor.applicationCompany.id"
+                                                ng-options="value.id as value.name for value in inspectUnitSH3"></select>
+                                    </div>
+                                </div>
+                                <!-- 申报人 -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">申报人</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入申报人" ng-model="inspectEditInfor.declarant"
+                                               id="declarant">
+                                    </div>
+                                </div>
+                                <!--设备类型-->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">设备类型</label>
+                                    <div class="col-lg-10">
+                                        <select class="form-control" ng-model="inspectEditInfor.deviceType.id"
+                                                ng-options="value.id as value.name for value in deviceType"></select>
+                                    </div>
+                                </div>
+                                <!--文件上传-->
+                                <!-- ngRepeat: data in uploadFileData -->
+                                <!--<div class="form-group ng-scope" ng-repeat="data in uploadFileData">-->
+                                    <!--<label class="col-lg-2 control-label ng-binding" ng-bind="data.name">三打算</label>-->
+                                    <!--<div class="col-lg-10">-->
+                                        <!--<input type="file"  ng-model="files[$index]" ngf-multiple="false"-->
+                                               <!--class="ng-pristine ng-untouched ng-valid ng-empty">-->
+                                        <!--<img class="material-image ng-hide" ngf-src="files[$index]">-->
+                                        <!--&lt;!&ndash; ngRepeat: file in deviceApplicationData.applicationMaterialFiles &ndash;&gt;-->
+                                    <!--</div>-->
+
+                                <!--</div>&lt;!&ndash; end ngRepeat: data in uploadFileData &ndash;&gt;-->
+                                <!--<div class="form-group ng-scope" ng-repeat="data in uploadFileData">-->
+                                    <!--<label class="col-lg-2 control-label ng-binding" ng-bind="data.name">所撕碎</label>-->
+                                    <!--<div class="col-lg-10">-->
+                                        <!--<input type="file" ngf-select="" ng-model="files[$index]" ngf-multiple="false"-->
+                                               <!--class="ng-pristine ng-untouched ng-valid ng-empty">-->
+                                        <!--<img class="material-image ng-hide" ngf-src="files[$index]">-->
+                                        <!--&lt;!&ndash; ngRepeat: file in deviceApplicationData.applicationMaterialFiles &ndash;&gt;-->
+                                    <!--</div>-->
+
+                                <!--</div>&lt;!&ndash; end ngRepeat: data in uploadFileData &ndash;&gt;-->
+                                <!--<div class="form-group ng-scope" ng-repeat="data in uploadFileData">-->
+                                    <!--<label class="col-lg-2 control-label ng-binding" ng-bind="data.name">所撕碎</label>-->
+                                    <!--<div class="col-lg-10">-->
+                                        <!--<input type="file" ngf-select="" ng-model="files[$index]" ngf-multiple="false"-->
+                                               <!--class="ng-pristine ng-untouched ng-valid ng-empty">-->
+                                        <!--<img class="material-image ng-hide" ngf-src="files[$index]">-->
+                                        <!--&lt;!&ndash; ngRepeat: file in deviceApplicationData.applicationMaterialFiles &ndash;&gt;-->
+                                    <!--</div>-->
+
+                                <!--</div>&lt;!&ndash; end ngRepeat: data in uploadFileData &ndash;&gt;-->
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <button class="btn btn-success btn-lg btn-block" data-dismiss="modal" ng-click="onConfirmButtonClick()">确定
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--受理设备报检信息弹窗-->
+        <div class="modal fade" id="myModa10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" >
+                    <div class="smart-widget ng-scope">
+                        <div class="smart-widget-header">
+                            受理信息详情
+                            <span class="smart-widget-option">
+            <a class="widget-remove-option">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </a>
+        </span>
+                        </div>
+                        <div class="smart-widget-inner">
+                            <div class="smart-widget-body">
+                                <form id="formToggleLine" class="form-horizontal no-margin form-border ng-pristine ng-valid">
+                                    <!-- 检验受理编号 -->
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">检验受理编号</label>
+                                        <div class="col-lg-9">
+                                            <p type="text" class="form-control ng-binding" >{{inspectUnitSHid}}</p>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">申报单位</label>
+                                        <div class="col-lg-9">
+                                            <p type="text" class="form-control ng-binding" >{{inspectUnitSHapplicationCompanyName}}</p>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <!-- 受理人员 -->
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">申报人</label>
+                                        <div class="col-lg-9">
+                                            <p type="text" class="form-control ng-binding" >{{inspectUnitSHdeviceCode}}</p>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <!-- 检验报告编号 -->
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">检验项目名称</label>
+                                        <div class="col-lg-9">
+                                            <p type="text" class="form-control ng-binding">{{inspectUnitSHprojectName}}</p>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">检验设备编号</label>
+                                        <div class="col-lg-9">
+                                            <p type="text" class="form-control ng-binding" >{{inspectUnitSHdeviceCode}}</p>
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- SUBMIT BUTTON -->
+                                        <div class="col-lg-12">
+                                            <button id="myModalAddUserdataButton" type="submit" data-dismiss="modal" class="btn btn-success btn-lg btn-block" ng-click="acceptApp()">受理
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div></div>
+            </div>
+        </div>
+        <!--详情-->
+        <div class="modal fade" id="myModa11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" ><div class="smart-widget ng-scope">
+                    <div class="smart-widget-header">
+                        报告详情
+                        <span class="smart-widget-option">
+                             <a class="widget-remove-option" ng-click="cancel()">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span
+                                               aria-hidden="true">&times;
+                                       </span>
+                                   </button>
+                             </a>
+                        </span>
+                    </div>
+                    <div class="smart-widget-inner">
+                        <div class="smart-widget-body">
+                            <form class="form-horizontal no-margin form-border ng-pristine ng-valid">
+                                <div active="activeForm" class="ng-isolate-scope">
+                                    <div class="tab-content tab-form-demo">
+                                       <div class="tab-pane ng-scope active"     >
+                                        <div class="form-group ng-scope" style="margin-top: 20px">
+                                            <label class="col-lg-3 control-label">产权备案编号</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" ng-bind="detailsContent.iprCode"></span>
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                        </div>
+                                        <!-- 设备编号 -->
+                                        <div class="form-group ng-scope">
+                                            <label class="col-lg-3 control-label">设备编号</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" ng-bind="detailsContent.deviceCode"></span>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <!-- 设备名称 -->
+                                        <div class="form-group ng-scope">
+                                            <label class="col-lg-3 control-label">设备名称</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" ng-bind="detailsContent.deviceName"></span>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <!-- 规格型号 -->
+                                        <div class="form-group ng-scope">
+                                            <label class="col-lg-3 control-label">规格型号</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" >undefind</span>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <!--所属工程-->
+                                        <div class="form-group ng-scope">
+                                            <label class="col-lg-3 control-label">所属工程</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" ng-bind="detailsContent.projectName"></span>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <!--设备公司名-->
+                                        <div class="form-group ng-scope">
+                                            <label class="col-lg-3 control-label">设备公司名</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" ng-bind="detailsContent.applicationCompanyName"></span>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <!-- 申报人 -->
+                                        <div class="form-group ng-scope">
+                                            <label class="col-lg-3 control-label">申报人</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" ng-bind="detailsContent.declarant"></span>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <!-- 申报时间 -->
+                                        <div class="form-group ng-scope">
+                                            <label class="col-lg-3 control-label">申报时间</label>
+                                            <div class="col-lg-9">
+                                                <span class="form-control ng-binding" ng-bind="detailsContent.createTime | date:'yyyy/MM/dd'"></span>
+                                                <span class="help-block"></span>
+                                            </div>
+                                        </div>
+                                        <!--文件上传-->
+                                        <!-- ngRepeat: data in modelDetailData.application.materialFiles -->
+                                         </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

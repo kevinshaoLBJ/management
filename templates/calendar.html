@@ -1,0 +1,48 @@
+<form class="col-lg-9 form-inline no-margin ng-pristine ng-valia-date ng-invalid ng-invalid-required">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="input-group">
+                    <input type="text" class=" form-control" uib-datepicker-popup ng-model="d"
+                           is-open="popup1.opened" datepicker-options="dateOptions"
+                           ng-required="true" close-text="Close" placeholder="开始时间"/>
+                    <span class="input-group-btn">
+                                    <button type="button" class="btn  btn-success" ng-click="open1()">
+                                        <i class='fa fa-calendar-plus-o'></i>
+                                    </button>
+                            </span>
+                </p>
+            </div>
+        <div class="col-md-4">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup ng-model="dt"
+                       is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true"
+                       close-text="Close"/>
+                <span class="input-group-btn">
+                                 <button type="button" class="btn btn-success" ng-click="open2()">
+                                     <i class="fa fa-calendar-plus-o"></i>
+                                 </button>
+                            </span>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p class="input-group">
+                <input type="text" class="form-control" placeholder="请输入搜索关键字">
+                <span class="input-group-btn">
+                                 <button type="button" class="btn btn-success">
+                                     <i>搜索</i>
+                                 </button>
+                        </span>
+            </p>
+        </div>
+    </div>
+</form>
+<div class="dropdown  col-lg-2">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+        待受理
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a href="#">待受理</a></li>
+        <li><a href="#">已受理</a></li>
+    </ul>
+</div>

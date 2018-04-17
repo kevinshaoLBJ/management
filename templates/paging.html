@@ -1,0 +1,9 @@
+<div style="float: right">
+    <ul class="pagination ng-isolate-scope ng-not-empty ng-valid" uib-pagination="" total-items="TotalRoleList" max-size="3" ng-model="roleListPage" items-per-page="count" first-text="«" boundary-link-numbers="true" rotate="false" last-text="»" ng-change="roleListPageChanged()" previous-text="‹" next-text="›" boundary-links="true">
+        <!-- ngIf: ::boundaryLinks --><li ng-if="::boundaryLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-first ng-scope disabled"><a href="" ng-click="selectPage(1, $event)" class="ng-binding">«</a></li><!-- end ngIf: ::boundaryLinks -->
+        <!-- ngIf: ::directionLinks --><li ng-if="::directionLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-prev ng-scope disabled"><a href="" ng-click="selectPage(page - 1, $event)" class="ng-binding">‹</a></li><!-- end ngIf: ::directionLinks -->
+        <!-- ngRepeat: page in pages track by $index --><li ng-repeat="page in pages track by $index" ng-class="{active: page.active,disabled: ngDisabled&amp;&amp;!page.active}" class="pagination-page ng-scope active"><a href="" ng-click="selectPage(page.number, $event)" class="ng-binding">1</a></li><!-- end ngRepeat: page in pages track by $index -->
+        <!-- ngIf: ::directionLinks --><li ng-if="::directionLinks" ng-class="{disabled: noNext()||ngDisabled}" class="pagination-next ng-scope disabled"><a href="" ng-click="selectPage(page + 1, $event)" class="ng-binding">›</a></li><!-- end ngIf: ::directionLinks -->
+        <!-- ngIf: ::boundaryLinks --><li ng-if="::boundaryLinks" ng-class="{disabled: noNext()||ngDisabled}" class="pagination-last ng-scope disabled"><a href="" ng-click="selectPage(totalPages, $event)" class="ng-binding">»</a></li><!-- end ngIf: ::boundaryLinks -->
+    </ul>
+</div>

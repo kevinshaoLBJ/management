@@ -1,0 +1,89 @@
+<div class="main-container">
+    <div class="header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h3 class="header-text m-bottom-sm">添加设备报检信息</h3>
+        <div class="smart-widget ng-scope">
+            <div class="smart-widget-inner">
+                <div class="smart-widget-body">
+                    <form id="formToggleLine" class="form-horizontal no-margin form-border ng-pristine ng-valid">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">产权备案编号</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="请输入产权备案编号" required ng-model="iprCode" >
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <!-- 设备编号 -->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">设备编号</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="请输入设备编号" required ng-model="deviceCode" id="deviceCode">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <!-- 设备名称 -->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">设备名称</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="请输入设备名称" required ng-model="deviceName" id="deviceName">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <!-- 规格型号 -->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">规格型号</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="请输入规格型号" required ng-model="specification" id="specification">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <!--所属工程-->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">所属工程</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" required ng-model="duetoProgram" name="duetoProgram"
+                                        ng-options="value.id as value.name for value in dueToprogram"></select>
+                            </div>
+                        </div>
+                        <!--设备公司名-->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">设备公司名</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" ng-model="businessName" name="businessName" ng-init="brand=deviceBusinessN[0].name" required ng-options="value.id as value.name for value in deviceBusinessN"></select>
+                            </div>
+                        </div>
+                        <!-- 申报人 -->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">申报人</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="请输入申报人" required ng-model="declarant">
+                            </div>
+                        </div>
+                        <!--设备类型-->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">设备类型</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" ng-change="changeSelect()" required ng-model="deviceTp" name="deviceTp"
+                                        ng-options="value as value.name for value in deviceType"></select>
+                            </div>
+                        </div>
+                        <!--文件上传-->
+                        <div class="form-group ng-scope" ng-repeat="data in showFile">
+                            <label class="col-lg-2 control-label ng-binding" ng-bind="data.name">所撕碎</label>
+                            <!--<label class="col-lg-2 control-label">设备图片</label>-->
+                            <div class="col-lg-10">
+                                <input type="file" ngf-select="" ng-model="files[$index]" ngf-multiple="false" class="ng-pristine ng-untouched ng-valid ng-empty">
+                                <img ngf-src="files[$index]" class="material-image ng-hide">
+                            </div>
+                        </div>
+                        <!-- ngRepeat: data in uploadFileData -->
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <button ng-click="applySubmit()" style="background-color:#2baab1;width:100%" class="btn btn-success block">确定</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

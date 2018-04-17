@@ -1,0 +1,378 @@
+<div class="overflow-hidden container">
+    <div class="wrapper preload">
+        <header class="top-nav">
+            <div class="top-nav-inner">
+                <div class="nav-header">
+                    <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleSM">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand">
+                        <span class="brand-name">建筑设备报检 <span class="text-skin">管理系统</span></span>
+                    </a>
+                </div>
+                <div class="nav-container">
+                    <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleLG" ng-click="">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="pull-right m-right-sm">
+                        <div class="user-block hidden-xs">
+                            <a type="button" ng-href="https://fir.im/bdm7" target="_blank" class="btn btn-link">
+                                下载手机端APP
+                            </a>
+                            <button type="button" class="btn btn-link" ng-click="backLogin()">
+                                    退出
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- ./top-nav-inner -->
+        </header>
+        <!--左边列表-->
+        <aside class="sidebar-menu fixed">
+            <div class="sidebar-inner scrollable-sidebar">
+                <div class="main-menu">
+                    <ul class="accordion">
+                        <li class="openable bg-palette2">
+                            <a ng-href="#">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">基础信息管理</span>
+										<span class="submenu-icon"></span>
+									</span>
+                                <span class="menu-content-hover block">
+										基础信息管理
+									</span>
+                            </a>
+                            <ul class="submenu bg-palette4">
+                                <li><a href="#!/main/programIn"><span class="submenu-label">工程信息维护</span></a></li>
+                                <li class="openable">
+                                    <a ng-href="">
+                                        <span class="submenu-label">单位信息维护</span>
+                                        <span class="submenu-icon"></span>
+                                    </a>
+                                    <ul class="submenu third-level">
+                                        <li><a ng-href=""><span class="submenu-label">安装单位</span></a></li>
+                                        <li><a ng-href=""><span class="submenu-label">产权单位</span></a></li>
+                                        <li><a ng-href=""><span class="submenu-label">施工总承包单位</span></a></li>
+                                        <li><a ng-href=""><span class="submenu-label">检验单位</span></a></li>
+                                        <li><a ng-href=""><span class="submenu-label">其他单位</span></a></li>
+                                    </ul>
+                                </li>
+                                <li class="openable">
+                                    <a ng-href="">
+                                        <span class="submenu-label">人员信息维护</span>
+                                        <span class="submenu-icon"></span>
+                                    </a>
+                                    <ul class="submenu third-level">
+                                        <li><a ng-href=""><span class="submenu-label">检验人员</span></a></li>
+                                        <li><a ng-href=""><span class="submenu-label">塔机司机</span></a></li>
+                                        <li><a ng-href=""><span class="submenu-label">塔机索工</span></a></li>
+                                        <li><a ng-href=""><span class="submenu-label">安全员</span></a></li>
+                                    </ul>
+                                </li>
+                                <li><a ng-href=""><span class="submenu-label">设备类型管理</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="openable bg-palette4">
+                            <a ng-href="#!main/programIn">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">检验信息维护</span>
+										<span class="submenu-icon"></span>
+									</span>
+                                <span class="menu-content-hover block">
+										检验信息维护
+									</span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a ng-href="#!/main/instpectApply"><span class="submenu-label">设备报检申请</span></a></li>
+                                <li><a ng-href="#!/main/inspectUnitSH"><span class="submenu-label">检验单位审核</span></a></li>
+                                <li><a ng-href="#!/main/inspectUnitZB"><span class="submenu-label">检验单位检验准备</span></a></li>
+                                <li><a ng-href="#!/main/inspectXC"><span class="submenu-label">现场检验</span></a></li>
+                                <li><a ng-href="#!/main/inspectReport"><span class="submenu-label">检验报告</span></a></li>
+                                <li><a ng-href="#!/main/inspectReFJ"><span class="submenu-label">检验报告复检</span></a></li>
+                                <li><a ng-href="#!/main/safeInspect"><span class="submenu-label">安全检验合格证</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="openable bg-palette1">
+                            <a ng-href="#">
+									<span class="menu-content block">
+										<span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+										<span class="text m-left-sm">系统管理</span>
+										<span class="submenu-icon"></span>
+									</span>
+                                <span class="menu-content-hover block">
+										系统管理
+									</span>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a ng-href="#!/main/administratorMa">
+                                        <span class="submenu-label">管理员管理</span>
+                                    </a>
+                                </li>
+                                <li><a ng-href="#!/main/roleMa"><span class="submenu-label">角色管理</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- sidebar-inner -->
+        </aside>
+        <!--动态接口内容-->
+        <div>
+            <ui-view name="mainContent"></ui-view>
+        </div>
+    </div><!-- /wrapper -->
+</div>
+<script>
+    $(function () {
+        //scrollable sidebar
+        $('.scrollable-sidebar').slimScroll({
+            height: '100%',
+            size: '0px'
+        });
+
+        //Collapsible Sidebar Menu
+        $('.sidebar-menu .openable > a').click(function () {
+
+            if (!$('aside').hasClass('sidebar-mini') || Modernizr.mq('(max-width: 991px)')) {
+                if ($(this).parent().children('.submenu').is(':hidden')) {
+                    $(this).parent().siblings().removeClass('open').children('.submenu').slideUp(200);
+                    $(this).parent().addClass('open').children('.submenu').slideDown(200);
+                }
+                else {
+                    $(this).parent().removeClass('open').children('.submenu').slideUp(200);
+                }
+            }
+
+            return false;
+        });
+
+        //Open active menu
+        if (!$('.sidebar-menu').hasClass('sidebar-mini') || Modernizr.mq('(max-width: 767px)')) {
+            $('.openable.open').children('.submenu').slideDown(200);
+        }
+
+        //Toggle User container on sidebar menu
+        $('#btn-collapse').click(function () {
+            $('.sidebar-header').toggleClass('active');
+        });
+
+        //theme setting
+        $("#theme-setting-icon").click(function () {
+            if ($('#theme-setting').hasClass('open')) {
+                $('#theme-setting').removeClass('open');
+                $('#theme-setting-icon').removeClass('open');
+            }
+            else {
+                $('#theme-setting').addClass('open');
+                $('#theme-setting-icon').addClass('open');
+            }
+
+            return false;
+        });
+
+        $('#sidebarToggleLG').click(function () {
+            if ($('.wrapper').hasClass('display-right')) {
+                $('.wrapper').removeClass('display-right');
+                $('.sidebar-right').removeClass('active');
+            }
+            else {
+                //$('.nav-header').toggleClass('hide');
+                $('.top-nav').toggleClass('sidebar-mini');
+                $('aside').toggleClass('sidebar-mini');
+                $('footer').toggleClass('sidebar-mini');
+                $('.main-container').toggleClass('sidebar-mini');
+
+                $('.main-menu').find('.openable').removeClass('open');
+                $('.main-menu').find('.submenu').removeAttr('style');
+            }
+        });
+
+        $('#sidebarToggleSM').click(function () {
+            $('aside').toggleClass('active');
+            $('.wrapper').toggleClass('display-left');
+        });
+
+        $('.sidebarRight-toggle').click(function () {
+            $('.sidebar-right').toggleClass('active');
+            $('.wrapper').toggleClass('display-right');
+            $('footer').toggleClass('display-right');
+
+            return false;
+        });
+
+        $('.dropdown-menu input').click(function (e) {
+            e.stopPropagation(); //This will prevent the event from bubbling up and close the dropdown when you type/click on text boxes.
+        });
+
+        //to do list
+        $('.task-finish').click(function () {
+            if ($(this).is(':checked')) {
+                $(this).parent().parent().addClass('selected');
+            }
+            else {
+                $(this).parent().parent().removeClass('selected');
+            }
+        });
+
+        //Delete to do list
+        $('.task-del').click(function () {
+            var activeList = $(this).parent().parent();
+
+            activeList.addClass('removed');
+
+            setTimeout(function () {
+                activeList.remove();
+            }, 1000);
+
+            return false;
+        });
+
+        var $activeWidget = '';
+        var $activeWidgetHeader;
+        var $headerHeight;
+        var $screenHeight;
+        var $widgetHeight;
+        var $borderHeight = 3;
+
+        //Smart Widget
+
+        // Refresh Widget
+        $('.widget-refresh-option').click(function () {
+
+            $activeWidget = $(this).parent().parent().parent();
+
+            var $activeSpinIcon = $activeWidget.find('.refresh-icon-animated').fadeIn();
+
+            setTimeout(function () {
+                $activeSpinIcon.fadeOut();
+            }, 2000);
+
+            return false;
+        });
+
+        // Collasible Widget
+        $('.widget-collapse-option').click(function () {
+            $activeWidget = $(this).parent().parent().parent();
+
+            $activeWidget.find('.smart-widget-inner').slideToggle();
+            $activeWidget.toggleClass('smart-widget-collapsed');
+
+            var $activeSpinIcon = $activeWidget.find('.refresh-icon-animated').fadeIn();
+
+            setTimeout(function () {
+                $activeSpinIcon.fadeOut();
+            }, 500);
+
+            $activeWidget = '';
+
+            return false;
+        });
+
+        //Changing Widget Color
+        $('.widget-toggle-hidden-option').click(function () {
+            $activeWidget = $(this).parent().parent().parent();
+
+            $activeWidget.find('.smart-widget-hidden-section').slideToggle();
+
+            var $activeSpinIcon = $activeWidget.find('.refresh-icon-animated').fadeIn();
+
+            setTimeout(function () {
+                $activeSpinIcon.fadeOut();
+            }, 500);
+
+
+            $activeWidget = '';
+
+            return false;
+        });
+
+        //Changing Widget Header Background
+        $('.widget-color-list li').click(function () {
+            $activeWidget = $(this).parent().parent().parent().parent();
+            $selectedColor = $(this).data('color');
+
+            $activeWidget.removeClass('widget-light-grey');
+            $activeWidget.removeClass('widget-dark');
+            $activeWidget.removeClass('widget-dark-blue');
+            $activeWidget.removeClass('widget-blue');
+            $activeWidget.removeClass('widget-green');
+            $activeWidget.removeClass('widget-yellow');
+            $activeWidget.removeClass('widget-orange');
+            $activeWidget.removeClass('widget-red');
+            $activeWidget.removeClass('widget-purple');
+
+            if ($selectedColor != 'reset')
+                $activeWidget.addClass($selectedColor);
+
+            return false;
+        });
+
+        // Remove Widget
+        $('.widget-remove-option').click(function () {
+
+            $activeWidget = $(this).parent().parent().parent();
+
+            $('#deleteWidgetConfirm').popup('show');
+
+            return false;
+
+        });
+
+        $('.remove-widget-btn').click(function () {
+            $('#deleteWidgetConfirm').popup('hide');
+            $activeWidget.fadeOut();
+
+            $activeWidget = '';
+
+            return false;
+        });
+
+        //Scroll to Top
+        $(".scroll-to-top").click(function () {
+            $("html, body").animate({scrollTop: 0}, 600);
+            return false;
+        });
+
+        // Popover
+        $("[data-toggle=popover]").popover();
+
+        // Tooltip
+        $("[data-toggle=tooltip]").tooltip();
+        $("[rel=tooltip]").tooltip();
+    });
+    $(window).load(function () {
+        $('body').removeClass('overflow-hidden');
+
+        //Enable animation
+        $('.wrapper').removeClass('preload');
+
+        //Chat Notification on top navigation
+        setTimeout(function () {
+            $('.chat-notification').find('.badge').addClass('active');
+            $('.chat-alert').addClass('active');
+        }, 3000);
+
+        setTimeout(function () {
+            $('.chat-alert').removeClass('active');
+        }, 8000);
+    });
+    // Toggle Scroll to Top button
+    $(window).scroll(function () {
+
+        var position = $(window).scrollTop();
+
+        if (position >= 200) {
+            $('.scroll-to-top').addClass('active')
+        }
+        else {
+            $('.scroll-to-top').removeClass('active')
+        }
+    });
+</script>
+
